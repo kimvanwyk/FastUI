@@ -44,6 +44,8 @@ __all__ = (
     'ServerLoad',
     'Image',
     'Iframe',
+    'Authorization',
+    'Redirect',
     'Custom',
     'Table',
     'Pagination',
@@ -223,6 +225,19 @@ class Iframe(_p.BaseModel, extra='forbid'):
     type: _t.Literal['Iframe'] = 'Iframe'
 
 
+class Authorization(_p.BaseModel, extra='forbid'):
+    # None means clear the token and thereby unauthorize/logout the user
+    token: _t.Union[str, None] = None
+    after_authorize: _t.Union[events.AnyEvent, None] = _p.Field(default=None, serialization_alias='afterAuthorize')
+    type: _t.Literal['Authorization'] = 'Authorization'
+
+
+class Redirect(_p.BaseModel, extra='forbid'):
+    event: events.AnyEvent
+    message: _t.Union[str, None] = None  # defaults to blank
+    type: _t.Literal['Redirect'] = 'Redirect'
+
+
 class Custom(_p.BaseModel, extra='forbid'):
     data: json_schema.JsonData
     sub_type: str = _p.Field(serialization_alias='subType')
@@ -250,6 +265,8 @@ AnyComponent = _te.Annotated[
         ServerLoad,
         Image,
         Iframe,
+        Authorization,
+        Redirect,
         Custom,
         Table,
         Pagination,

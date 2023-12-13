@@ -40,6 +40,8 @@ import { JsonComp, JsonProps } from './Json'
 import { ServerLoadComp, ServerLoadProps } from './ServerLoad'
 import { ImageComp, ImageProps } from './image'
 import { IframeComp, IframeProps } from './Iframe'
+import { AuthorizationProps, AuthorizationComp } from './authorization'
+import { RedirectComp, RedirectProps } from './redirect'
 import { CustomComp, CustomProps } from './Custom'
 
 export type {
@@ -68,6 +70,8 @@ export type {
   ServerLoadProps,
   ImageProps,
   IframeProps,
+  AuthorizationProps,
+  RedirectProps,
   CustomProps,
 }
 
@@ -99,6 +103,8 @@ export type FastProps =
   | ServerLoadProps
   | ImageProps
   | IframeProps
+  | AuthorizationProps
+  | RedirectProps
   | CustomProps
 
 export type FastClassNameProps = Exclude<FastProps, TextProps | AllDisplayProps | ServerLoadProps | PageTitleProps>
@@ -182,6 +188,10 @@ export const AnyComp: FC<FastProps> = (props) => {
         return <ImageComp {...props} />
       case 'Iframe':
         return <IframeComp {...props} />
+      case 'Authorization':
+        return <AuthorizationComp {...props} />
+      case 'Redirect':
+        return <RedirectComp {...props} />
       case 'Custom':
         return <CustomComp {...props} />
       default:
