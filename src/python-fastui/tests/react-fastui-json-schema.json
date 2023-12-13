@@ -570,7 +570,7 @@
           "type": "string"
         },
         "htmlType": {
-          "enum": ["date", "datetime-local", "email", "number", "password", "text", "time", "url"],
+          "enum": ["date", "datetime-local", "email", "hidden", "number", "password", "text", "time", "url"],
           "type": "string"
         },
         "initial": {
@@ -767,17 +767,10 @@
           "type": "string"
         },
         "footer": {
-          "anyOf": [
-            {
-              "items": {
-                "$ref": "#/definitions/FastProps"
-              },
-              "type": "array"
-            },
-            {
-              "type": "boolean"
-            }
-          ]
+          "items": {
+            "$ref": "#/definitions/FastProps"
+          },
+          "type": "array"
         },
         "formFields": {
           "items": {
@@ -794,6 +787,9 @@
         },
         "submitOnChange": {
           "type": "boolean"
+        },
+        "submitTrigger": {
+          "$ref": "#/definitions/PageEvent"
         },
         "submitUrl": {
           "type": "string"
@@ -1103,17 +1099,10 @@
           "type": "string"
         },
         "footer": {
-          "anyOf": [
-            {
-              "items": {
-                "$ref": "#/definitions/FastProps"
-              },
-              "type": "array"
-            },
-            {
-              "type": "boolean"
-            }
-          ]
+          "items": {
+            "$ref": "#/definitions/FastProps"
+          },
+          "type": "array"
         },
         "formFields": {
           "items": {
@@ -1130,6 +1119,9 @@
         },
         "submitOnChange": {
           "type": "boolean"
+        },
+        "submitTrigger": {
+          "$ref": "#/definitions/PageEvent"
         },
         "submitUrl": {
           "type": "string"
